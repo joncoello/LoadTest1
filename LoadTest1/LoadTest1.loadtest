@@ -1,20 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <LoadTest Name="LoadTest1" Description="" Owner="" storage="c:\users\jon.coello\documents\visual studio 2015\projects\loadtest1\loadtest1\loadtest1.loadtest" Priority="2147483647" Enabled="true" CssProjectStructure="" CssIteration="" DeploymentItemsEditable="" WorkItemIds="" TraceLevel="None" CurrentRunConfig="Run Settings1" Id="70a2916a-fdac-45e8-a9a1-26fc9157579c" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
   <Scenarios>
-    <Scenario Name="Scenario1" DelayBetweenIterations="0" PercentNewUsers="0" IPSwitching="false" TestMixType="PercentageOfTestsStarted" ApplyDistributionToPacingDelay="true" MaxTestIterations="0" DisableDuringWarmup="false" DelayStartTime="0" AllowedAgents="">
+    <Scenario Name="Scenario1" DelayBetweenIterations="0" PercentNewUsers="0" IPSwitching="false" TestMixType="UserPacing" ApplyDistributionToPacingDelay="true" MaxTestIterations="0" DisableDuringWarmup="false" DelayStartTime="0" AllowedAgents="">
       <ThinkProfile Value="0.2" Pattern="NormalDistribution" />
       <LoadProfile Pattern="Step" InitialUsers="50" MaxUsers="200" StepUsers="50" StepDuration="20" StepRampTime="0" />
       <TestMix>
-        <TestProfile Name="WebTest1" Path="webtest1.webtest" Id="ed468807-dc78-447a-83c6-85bfac6c32f9" Percentage="100" Type="Microsoft.VisualStudio.TestTools.WebStress.DeclarativeWebTestElement, Microsoft.VisualStudio.QualityTools.LoadTest, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="CreatePerson" Path="createperson.webtest" Id="ed468807-dc78-447a-83c6-85bfac6c32f9" Percentage="60" Type="Microsoft.VisualStudio.TestTools.WebStress.DeclarativeWebTestElement, Microsoft.VisualStudio.QualityTools.LoadTest, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+        <TestProfile Name="LoadPeople" Path="loadpeople.webtest" Id="f3a3a723-816e-4c58-9aa5-f1cfb0f3b09f" Percentage="60" Type="Microsoft.VisualStudio.TestTools.WebStress.DeclarativeWebTestElement, Microsoft.VisualStudio.QualityTools.LoadTest, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
       </TestMix>
       <BrowserMix>
-        <BrowserProfile Percentage="100">
+        <BrowserProfile Percentage="32">
           <Browser Name="Internet Explorer 9.0" MaxConnections="6">
             <Headers>
               <Header Name="User-Agent" Value="Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)" />
               <Header Name="Accept" Value="*/*" />
               <Header Name="Accept-Language" Value="{{$IEAcceptLanguage}}" />
               <Header Name="Accept-Encoding" Value="GZIP" />
+            </Headers>
+          </Browser>
+        </BrowserProfile>
+        <BrowserProfile Percentage="68">
+          <Browser Name="Chrome 2" MaxConnections="6">
+            <Headers>
+              <Header Name="User-Agent" Value="Mozilla/5.0 (Windows; U; Windows NT 5.1;) AppleWebKit/530.1 (KHTML, like Gecko) Chrome/2.0.169.1 Safari/530.1" />
+              <Header Name="Accept" Value="*/*" />
+              <Header Name="Accept-Language" Value="{{$IEAcceptLanguage}}" />
+              <Header Name="Accept-Encoding" Value="gzip,deflate" />
+              <Header Name="Accept-Charset" Value="ISO-8859-1,*,utf-8" />
             </Headers>
           </Browser>
         </BrowserProfile>
@@ -431,6 +443,10 @@
             <Counter Name="Person Repository Error: Average Operation Time Base" />
             <Counter Name="Person Repository Error: Operation Count" />
             <Counter Name="Person Repository Error: Operations Per Second" />
+            <Counter Name="Create Person: Average Operation Time" />
+            <Counter Name="Create Person: Average Operation Time Base" />
+            <Counter Name="Create Person: Operation Count" />
+            <Counter Name="Create Person: Operations Per Second" />
           </Counters>
         </CounterCategory>
       </CounterCategories>
